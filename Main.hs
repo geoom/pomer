@@ -6,7 +6,7 @@ import Data.Time (diffUTCTime, getCurrentTime)
 import System.Environment (getArgs)
 import System.IO (hFlush, stdout)
 
--- | Format an elapsed time as HH:MM:SS.
+-- | Format as HH:MM:SS.
 formatElapsed :: Double -> String
 formatElapsed seconds =
   let totalSeconds = floor seconds :: Int
@@ -17,7 +17,7 @@ formatElapsed seconds =
   where
     pad n = (if n < 10 then "0" else "") ++ show n
 
--- | Run a terminal counter that prints elapsed time every second.
+-- | Print elapsed time.
 runCounter :: Maybe String -> IO ()
 runCounter mTask = do
   start <- getCurrentTime
