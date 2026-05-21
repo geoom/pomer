@@ -2,3 +2,8 @@
 *.sqlite3.*
 *.cache
 *.cache.lock
+.hi
+.o
+*.hi
+*.o
+pomer

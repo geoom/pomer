@@ -3,6 +3,7 @@ module Main where
 import Control.Concurrent (threadDelay)
 import Control.Monad (forever)
 import Data.Time (diffUTCTime, getCurrentTime)
+import System.Environment (getArgs)
 import System.IO (hFlush, stdout)
 
 -- | Format an elapsed time as HH:MM:SS.
@@ -17,9 +18,12 @@ formatElapsed seconds =
     pad n = (if n < 10 then "0" else "") ++ show n
 
 -- | Run a terminal counter that prints elapsed time every second.
-runCounter :: IO ()
-runCounter = do
+runCounter :: Maybe String -> IO ()
+runCounter mTask = do
   start <- getCurrentTime
+  case mTask of
+    Just task -> putStrLn $ "Task: " ++ task
+    Nothing   -> return ()
   putStrLn "Counter started. Press Ctrl+C to stop."
   forever $ do
     now <- getCurrentTime
@@ -28,4 +32,9 @@ runCounter = do
     threadDelay 1000000
 
 main :: IO ()
-main = runCounter
+main = do
+  args <- getArgs
+  let mTask = case args of
+                []  -> Nothing
+                _   -> Just (unwords args)
+  runCounter mTask
