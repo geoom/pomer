@@ -3,10 +3,10 @@
 PREFIX ?= /usr/local/bin
 
 build:
-	stack --system-ghc ghc -- Main.hs -o pomer
+	stack --system-ghc build --copy-bins --local-bin-path .
 
 run:
-	stack --system-ghc runghc -- Main.hs
+	stack --system-ghc run pomer -- $(ARGS)
 
 install: build
 	install -m 755 pomer $(PREFIX)/pomer

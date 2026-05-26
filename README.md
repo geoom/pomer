@@ -14,9 +14,14 @@ A terminal-based time tracker for tasks, written in Haskell.
 
 ## Install
 
+On macOS, source the environment script before building or running:
+
 ```bash
+source scripts/macos-env.sh
+stack --system-ghc build
+stack --system-ghc test
 make install
-# or install to a custom location
+# or install to an existing custom directory
 make install PREFIX=$HOME/.local/bin
 ```
 
@@ -25,14 +30,18 @@ make install PREFIX=$HOME/.local/bin
 Run from source:
 
 ```bash
-stack --system-ghc runghc -- Main.hs
+make run
+make run ARGS='write proposal'
 ```
 
-Or run the installed executable:
+Or run the built or installed executable:
 
 ```bash
-pomer
+./pomer
+pomer "write proposal"
 ```
+
+Without task words, the timer runs unlabeled. Press Ctrl+C to stop it.
 
 ## License
 
