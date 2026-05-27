@@ -18,6 +18,12 @@ formatElapsed seconds =
 elapsedSeconds :: UTCTime -> UTCTime -> Double
 elapsedSeconds start now = realToFrac (diffUTCTime now start)
 
+-- | Interpret CLI arguments as an optional task label: no arguments means
+-- no task, and any words are joined into a single multiword label.
+parseTaskArgs :: [String] -> Maybe String
+parseTaskArgs [] = Nothing
+parseTaskArgs ws = Just (unwords ws)
+
 -- | Print elapsed time.
 runCounter :: Maybe String -> IO ()
 runCounter mTask = do

@@ -6,6 +6,7 @@ build-type: Simple
 library
   exposed-modules: Pomer.Timer
   hs-source-dirs: src
+  ghc-options: -Wall
   build-depends:
     base >= 4.20 && < 4.21,
     time >= 1.12 && < 1.13
@@ -14,6 +15,7 @@ library
 executable pomer
   main-is: Main.hs
   hs-source-dirs: .
+  ghc-options: -Wall
   build-depends:
     base >= 4.20 && < 4.21,
     pomer
@@ -23,6 +25,7 @@ test-suite pomer-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   hs-source-dirs: test
+  ghc-options: -Wall
   build-depends:
     base >= 4.20 && < 4.21,
     pomer,
